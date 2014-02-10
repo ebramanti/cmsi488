@@ -4,34 +4,35 @@
 \usepackage{verbatim}
 \usepackage{tikz}
 \usetikzlibrary{trees}
-\usepackage[T1]{fontenc}
-\setlist{parsep=0pt, listparindent=\parindent}
+\begin{document}
 \title{CMSI 386 Homework \#4}
 \author{Zane Kansil \& Edward Bramanti}
-\begin{document}
+\maketitle
 \begin{enumerate}
-\item Write Regular Expressions for: 
-	\begin{enumerate}
-		\item Canadian Postal Codes:
-		\begin{verbatim}
-			[^DFIOQUWZ][\d][^DFIOQU] [\d][^DFIOQU][\d]
-		\end{verbatim}
-		\item Legal Visa® Card Numbers, not including checksums
-	    \begin{verbatim}
-	        4\d{3} (\d{4} ){3}
-	    \end{verbatim}
-	    \item MasterCard® Numbers, not including checksums
-	  	\begin{verbatim}
-			5\d{3} (\d{4} ){3}
-		\end{verbatim}
-		\item Ada 95 numeric literals
-		\begin{verbatim}
-
-		\end{verbatim}
-		\item Strings of letters and numbers beginning with a letter, EXCEPT those strings that are exactly three letters ending with two Latin letter ohs, of any case.
-		\begin{verbatim}
-		
-		\end{verbatim}
-	\end{enumerate}
+    \item Write Regular Expressions for: 
+    \begin{enumerate}
+        \item Canadian Postal Codes:
+        \begin{verbatim}
+        [^DFIOQUWZ][\d][^DFIOQU] [\d][^DFIOQU][\d]
+        \end{verbatim}
+        \item Legal Visa® Card Numbers, not including checksums
+        \begin{verbatim}
+        4\d{3} (\d{4} ){3}
+        \end{verbatim}
+        \item MasterCard® Numbers, not including checksums
+        \begin{verbatim}
+        5\d{3} (\d{4} ){3}
+        \end{verbatim}
+        \item Ada 95 numeric literals
+        \begin{verbatim}
+        \d(_?\d)*#[\dA-F](_?[\dA-F])*#(E[+-]+[\dA-F](_?[\dA-F])*)?|\d(_?\d)*(\.\d(_?\d)*)?(E[+-]+\d(_?\d)*)?
+        \end{verbatim}
+        \item Strings of letters and numbers beginning with a letter, EXCEPT those strings that are exactly three letters ending with two Latin letter ohs, of any case.
+        \begin{verbatim}
+        ^\w(?![Oo][Oo]$)[\w\d]*
+        \end{verbatim}
+    \end{enumerate}
+    \pagebreak
 \end{enumerate}
+
 \end{document}
