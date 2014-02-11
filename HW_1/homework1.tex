@@ -39,9 +39,9 @@
 \item Syntax tree for Program in JSON (http://cs.lmu.edu/~ray/notes/syntax/)
 \verbatiminput{syntax-tree.js}
 \pagebreak
-\item In the Ada language comments are started with ``--'' and go to the end of the line. Therefore the designers decided not to make the unary negation operator have the highest precedence. Explain why this choice was made. Also, give an abstract syntax tree for the expression -8 * 5 and explain how this is similar to and how it is different from the alternative of dropping the negation from EXP2 and adding - EXP5 to EXP4. \\
+\item In the Ada language comments are started with ``--'' and go to the end of the line. Therefore the designers decided not to make the unary negation operator have the highest precedence. Explain why this choice was made. Also, give an abstract syntax tree for the expression -8 * 5 and explain how this is similar to and how it is different from the alternative of dropping the negation from EXP2 and adding - EXP5 to EXP4.\\
 \\
-The designers made this choice so that you can have a \texttt{NEG|POS - POS} or a \texttt{NEG|POS + POS}, but never a \texttt{NEG|POS ± NEG}. Essentially, only positive numbers can be the second parameter of a binary addition. If someone were to do \texttt{9--5} today, many programs have syntax highlighting which would alert the programmer to their code being commented out. Nevertheless, when Ada was designed, syntax highlighting may not have been as advanced; therefore, it was necessary for the laguage designers to carefully consider what to do with this programming conflict.
+The designers made this choice so that you can have a \texttt{NEG|POS - POS} or a \texttt{NEG|POS + POS}, but never a \texttt{NEG|POS [+-] NEG}. Essentially, only positive numbers can be the second parameter of a binary addition. If someone were to do \texttt{9--5} it would be tokenized as the expression 9 followed by the comment containing `5'. It is important that comments be flexible and insertable in-line as opposed to only at the beginning of the line. Because comments are in-lineable, the language syntax must be able to tokenize the comment for grouping (so it can be excluded). This is done by disambiguating comments from similar-looking things in the language, like its \texttt{ADDOP} expressions.\\
 \begin{center}
 \begin{tikzpicture}[level distance=1.5cm,
   node distance=2.5cm,
