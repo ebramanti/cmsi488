@@ -60,5 +60,99 @@
         throw up;
     }
     \end{verbatim}
+    \begin{center}
+    \begin{tikzpicture}[level distance=1.5cm,
+      level 1/.style={sibling distance=6cm},
+      level 2/.style={sibling distance=4cm},
+      level 3/.style={sibling distance=1cm},
+      level 4/.style={sibling distance=2cm},
+      level 5/.style={sibling distance=1cm},
+      level 6/.style={sibling distance=1.5cm},
+      level 7/.style={sibling distance=1.5cm}
+    ]
+    \node {if}
+        child {node{case 1}
+            child {node{\(\vert\)\(\vert\)}
+                child {node{\textgreater}
+                    child {node{x}}
+                    child {node{2}}
+                }
+                child {node{!}
+                    child {node{call}
+                        child {node{.}
+                            child {node{String}}
+                            child {node{matches}}
+                        }
+                        child {node{call}
+                            child {node{f}}
+                            child {node{x}}
+                        }
+                    }
+                }
+            }
+            child {node{call}
+                child {node{write}}
+                child {node{*}
+                    child {node{-}
+                        child {node{3}}
+                    }
+                    child {node{q}}
+                }
+            }
+        }
+        child {node{case 2}
+            child {node{\(\vert\)\(\vert\)}
+                child {node{!}
+                    child {node{here}}
+                }
+                child {node{there}}
+            }
+            child {node{dowhile}
+                child {node{while}
+                    child {node{close}}
+                    child {node{call}
+                        child{node{tryHarder}}
+                    }
+                }
+                child {node{=}
+                    child {node{x}}
+                    child {node{\&}
+                        child {node{>>>}
+                            child {node{x}}
+                            child {node{3}}
+                        }
+                        child {node{*}
+                            child {node{2}}
+                            child {node{x}}
+                        }
+                    }
+                }
+                child {node{false}}
+            }
+            child {node{=}
+                child {node{call}
+                    child {node{.}
+                        child {node{get}
+                            child {node{q}}
+                            child {node{4}}
+                        }
+                        child {node{g}}
+                    }
+                    child{node{6}}
+                }
+                child {node{get}
+                    child {node{.}
+                        child {node{person}}
+                        child {node{list}}
+                    }
+                    child {node{2}}
+                }
+            }
+        }
+        child {node{throw}
+            child {node{up}}
+        };
+    \end{tikzpicture}
+    \end{center}
 \end{enumerate}
 \end{document}
