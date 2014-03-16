@@ -1,3 +1,7 @@
+*.aux
+*.log
+*.synctex.gz
+*.fdb_latexmk
 lib-cov
 *.seed
 *.log
