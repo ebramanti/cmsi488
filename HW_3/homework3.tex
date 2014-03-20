@@ -20,10 +20,74 @@
             B -> 'b' E | 'a' B B
         \end{verbatim}
         \begin{enumerate}
-            \item Describe in English, the language of this grammar.
-            \item Draw a parse tree for the string abaa.
-            \item Prove or disprove: This grammar is LL(1).
-            \item Prove or disprove: This grammar is ambiguous.
+            \item Describe in English, the language of this grammar. \\
+            It is a language of strings over \{a, b\}. The start symbol generates one or more A's. Each A will expand to a string creating one more a than b, and each B will do the opposite: one more b than a. E will also have an equal number of a's and b's.
+            \item Draw a parse tree for the string abaa. \\
+            \begin{tikzpicture}[level distance=1.5cm,
+                node distance=2.5cm,
+                semithick,
+                level 1/.style={sibling distance=7.2132cm},
+                level 2/.style={sibling distance=2.8210cm},
+                level 3/.style={sibling distance=1.171cm},
+                level 4/.style={sibling distance=0.7342cm},
+            ]
+            \node{S}
+                child {node{A}
+                    child {node{a}}
+                    child {node{E}
+                        child{node{b}}
+                        child{node{A}
+                            child{node{a}}
+                            child{node{E}}
+                        }
+                    }
+                }
+                child{node{M}
+                    child{node{S}
+                        child{node{A}
+                            child{node{a}}
+                            child{node{E}}
+                        }
+                        child{node{M}}
+                    }
+                }; 
+            \end{tikzpicture}
+            \item Prove or disprove: This grammar is LL(1). \\
+                The grammar is not LL(1). When looking at E, you can either go from E to aB or the empty string, because an E can be followed by an `a`. An E can end with an A followed by an A, and begin with an `a`.
+            \item Prove or disprove: This grammar is ambiguous. \\
+                The grammar is ambiguous. Here is another parse tree for abaa, different from the tree above.
+                \begin{tikzpicture}[
+                    level distance=1.5cm,
+                    node distance=2.5cm,
+                    semithick,
+                    level 1/.style={sibling distance=4cm},
+                    level 2/.style={sibling distance=2.8210cm},
+                    level 3/.style={sibling distance=1.25cm},
+                    level 4/.style={sibling distance=1.25cm},
+                    level 5/.style={sibling distance=.75cm}
+                ]
+                \node{S}
+                    child {node{A}
+                        child {node{a}}
+                        child {node{E}}
+                    }
+                    child{node{M}
+                        child{node{S}
+                            child{node{A}
+                                child{node{b}}
+                                child{node{A}
+                                    child{node{a}}
+                                    child{node{E}}
+                                }
+                                child{node{A}
+                                    child{node{a}}
+                                    child{node{E}}
+                                }
+                            }
+                            child{node{M}}
+                        }
+                    }; 
+                \end{tikzpicture}
         \end{enumerate}
     \pagebreak
     \item Here's a grammar that's trying to capture the usual expressions, terms, and factors, while considering assignment to be an expression.
@@ -35,8 +99,17 @@
             FACTOR      -> "(" EXP ")" | ID
         \end{verbatim}
         \begin{enumerate}
-            \item Prove that this grammar is not LL(1).
+            \item Prove that this grammar is not LL(1). \\
+            The grammar is not LL(1) because you can expand an EXP when looking at ID in two ways:
+            \begin{verbatim}
+                EXP     -> ID ":=" EXP
+                EXP     -> ID           // from TERM to FACTOR
+            \end{verbatim}
             \item Rewrite it so that it is LL(1).
+\begin{verbatim}
+    EXP     -> ID( ":=" EXP | "(" EXP ")" ( "*" FACTOR )* ("+" FACTOR ( "*" FACTOR )* )* )
+    FACTOR  -> "(" EXP ")" | ID
+\end{verbatim}
         \end{enumerate}
     \pagebreak
     \item Write an attribute grammar for the grammar in the previous problem. Your attribute grammar should describe the obvious run-time semantics.
@@ -55,7 +128,7 @@
     \item Write a command-line application in Ruby, Clojure, JavaScript, or Python that evaluates polynomials from the language you defined above. The first argument should be the polynomial and the second is the value at which to evaluate the polynomial. Here are some example runs:
     \begin{verbatim}
         $ ruby evalpoly.rb "2x" 10
-        20.000000
+            20.000000
         $ ruby evalpoly.rb "2x^3+7x+5" 2
             35.000000
         $ ruby evalpoly.rb "3x^8-x+x^2" 1
