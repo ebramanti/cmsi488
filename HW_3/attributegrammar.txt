@@ -1,9 +1,34 @@
-EXP ->
-        ID := EXP1
-        {ID.value := EXP.value}
+EXP ->  ID -> {E.is = ID.value} 
+        (   (":=" EXP1 -> {E.is = assign(left, EXP1.value)})
+        |   ("*"
+                (  "(" EXP1 ")" -> {E.is = multiply(E.is, EXP1.value)})
+                |  ID1 -> {E.is = multiply(E.is, ID1.value)}
+            )*
+        |   ("+"
+                {E.left = E.is, E.right = null}
+                (  "(" EXP1 ")" {E.right = EXP1.value}
+                    ("*"
+                        (  "(" EXP2 ")" {E.right = multiply(E.right, EXP1.value)})
+                        |  ID1 {E.right = multiply(E.right, ID1.value)}  )
+                    )*
+                    {E.is = add(E.left, E.right)}
+                |  ID1 -> {E.right = ID1.value}
+                    ("*"
+                        (  "(" EXP2 ")" {E.right = multiply(E.right, EXP1.value)})
+                        |  ID1 {E.right = multiply(E.right, ID1.value)}  )
+                    )*
+                    {E.is = add(E.left, E.right)}
+                )
+            )*
+        )
 
-        EXP * EXP1
-        {EXP.value := '*' EXP.value EXP1.value}
+Original:
+    EXP         -> ID ":=" EXP | TERM TERM_TAIL
+    TERM_TAIL   -> ("+" TERM TERM_TAIL)?
+    TERM        -> FACTOR FACTOR_TAIL
+    FACTOR_TAIL -> ("*" FACTOR FACTOR_TAIL)?
+    FACTOR      -> "(" EXP ")" | ID
 
-        EXP1 + EXP2
-        {EXP.value := '+' EXP1 EXP2}
+Changed:
+    EXP         -> ID ":=" EXP | FACTOR ("*" FACTOR)* ("+" FACTOR ("*" FACTOR)*)*
+    FACTOR      -> "(" EXP ")" | ID
