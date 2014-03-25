@@ -92,23 +92,23 @@
     \pagebreak
     \item Here's a grammar that's trying to capture the usual expressions, terms, and factors, while considering assignment to be an expression.
         \begin{verbatim}
-            EXP         -> ID ":=" EXP | TERM TERM_TAIL
-            TERM_TAIL   -> ("+" TERM TERM_TAIL)?
+            EXP         -> ID ':=' EXP | TERM TERM_TAIL
+            TERM_TAIL   -> ('+' TERM TERM_TAIL)?
             TERM        -> FACTOR FACTOR_TAIL
-            FACTOR_TAIL -> ("*" FACTOR FACTOR_TAIL)?
-            FACTOR      -> "(" EXP ")" | ID
+            FACTOR_TAIL -> ('*' FACTOR FACTOR_TAIL)?
+            FACTOR      -> '(' EXP ')' | ID
         \end{verbatim}
         \begin{enumerate}
             \item Prove that this grammar is not LL(1). \\
             The grammar is not LL(1) because you can expand an EXP when looking at ID in two ways:
             \begin{verbatim}
-                EXP     -> ID ":=" EXP
+                EXP     -> ID ':=' EXP
                 EXP     -> ID           // from TERM to FACTOR
             \end{verbatim}
             \item Rewrite it so that it is LL(1).
 \begin{verbatim}
-    EXP     -> ID( ":=" EXP | "(" EXP ")" ( "*" FACTOR )* ("+" FACTOR ( "*" FACTOR )* )* )
-    FACTOR  -> "(" EXP ")" | ID
+    EXP     -> ID( ':=' EXP | '(' EXP ')' ( '*' FACTOR )* ('+' FACTOR ( '*' FACTOR )* )* )
+    FACTOR  -> '(' EXP ')' | ID
 \end{verbatim}
         \end{enumerate}
     \pagebreak
@@ -124,6 +124,7 @@
             \item \begin{verbatim}-9x^5-0+4x^100\end{verbatim}
             \item \begin{verbatim}-3x^1+8x^0\end{verbatim}
         \end{itemize}
+        \verbatiminput{attributegrammar2.txt}
     \pagebreak
     \item Write a command-line application in Ruby, Clojure, JavaScript, or Python that evaluates polynomials from the language you defined above. The first argument should be the polynomial and the second is the value at which to evaluate the polynomial. Here are some example runs:
     \begin{verbatim}

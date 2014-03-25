@@ -1,0 +1,9 @@
+EXP ->
+        ID := EXP1
+        {ID.value := EXP.value}
+
+        EXP * EXP1
+        {EXP.value := '*' EXP.value EXP1.value}
+
+        EXP1 + EXP2
+        {EXP.value := '+' EXP1 EXP2}

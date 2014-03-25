@@ -1,0 +1,13 @@
+POLY   ->   ('-' {negative := true})?
+          
+            TERM {POLY.value := TERM.value}
+            (
+              ( '+' {op := '+'} | '-' {op := '-'} )
+              TERM {POLY.value := op(POLY.value, TERM.value)}
+            )*
+            {P.value := negative ? -P.value : P.value}
+
+TERM   ->   {EXPONENT := 0} (NUMBER {BASE := INT(NUMBER.lexeme)})
+            ('x' {EXPONENT := 1} 
+                ('^' (NUMBER) {EXPONENT := NUMBER.value})?
+            )?
