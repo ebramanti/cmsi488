@@ -107,8 +107,8 @@
             \end{verbatim}
             \item Rewrite it so that it is LL(1).
 \begin{verbatim}
-    EXP     -> ID( ':=' EXP | '(' EXP ')' ( '*' FACTOR )* ('+' FACTOR ( '*' FACTOR )* )* )
-    FACTOR  -> '(' EXP ')' | ID
+    EXP     -> ID( ":=: EXP | "(" EXP ")" ( "*" FACTOR )* ("+" FACTOR ( "*" FACTOR )* )* )
+    FACTOR  -> "(" EXP ")" | ID
 \end{verbatim}
         \end{enumerate}
     \pagebreak
