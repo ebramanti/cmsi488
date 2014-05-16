@@ -2,7 +2,7 @@ CMSI 488: Language Translation and Implementation (Compilers)
 =======
 Assignments from Language Translation and Implementation (Compilers) collaboratively completed with Zane Kansil ([@AuthorOfTheSurf](http://github.com/AuthorOfTheSurf)). We took this course during the spring semester in 2014.
 
-In addition to this repository, most of the coursework was creating KobraScript, a programming language Zane and I designed. It can be viewed here: http://github.com/AuthorOfTheSurf/kobra-script.
+In addition to this repository, most of the coursework was creating KobraScript, a programming language Zane and I designed. It can be viewed here: http://github.com/AuthorOfTheSurf/KobraScript.
 
 ### Learning Outcomes
 
@@ -33,11 +33,11 @@ Assignment 3 involved completing a parser for [KobraScript](http://github.com/Au
 
 Assignment 4 involved completing the semantic analyzer and code generator portions of our compiler with unit tests in Mocha. We were required to have good design notes on our wiki, and a history of issues that showed consistent progress throughout the course.
 
-#### Assignment 5: [KobraScript](http://github.com/AuthorOfTheSurf/kobra-script) Optimization and Iki Feature Implementation
+#### Assignment 5 (Cancelled): [KobraScript](http://github.com/AuthorOfTheSurf/kobra-script) Optimization and Iki Feature Implementation
 
-Our final assignment involved adding optimizations to [KobraScript](http://github.com/AuthorOfTheSurf/kobra-script). We also forked Dr. Toal's Iki Compiler and implemented new functionality.
+Our final assignment involved adding optimizations to [KobraScript](http://github.com/AuthorOfTheSurf/kobra-script). We also forked Dr. Toal's Iki Compiler and implemented new functionality. This assignment was cancelled by Dr. Toal due to limited explanation on optimization and the complexity of our compiler.
 
 ### Completion of Class
 
-Pending.
+Zane and I (Edward) both completed the course with a grade of A. While we collaboratively completed our compiler KobraScript and the work in this repository, we took the 3-hour take-home final individually as outlined in the syllabus.
 
